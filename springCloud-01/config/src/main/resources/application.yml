@@ -1,0 +1,34 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: config
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+#        git:
+#          uri: https://gitee.com/ooooo9x/spring-cloud-test.git #配置git仓库地址
+#          searchPaths: config #配置仓库路径
+          #username: lynnlovemin #访问git仓库的用户名
+          #password: ****** #访问git仓库的用户密码
+        native:
+          searchLocations: D:/work/mygit/spring-cloud-demo/springCloud-01/config/config
+#      label: master #配置仓库的分支
+#  rabbitmq:
+#    host: 127.0.0.1
+#    port: 5672
+#    username: guest
+#    password: guest
+#    virtualHost: /
+#    publisherConfirms: true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+management:
+    endpoints:
+        web:
+            exposure:
+                include: refresh,health,info,bus-refresh
