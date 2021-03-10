@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      uri: http://127.0.0.1:9005/
+      label: master
+      profile: dev
+      name: ${spring.application.name}
+      discovery:
+        enabled: true
+        service-id: config-server
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+  # 消息队列
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'refresh'
+        
+server:
+  port: 9006
+
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n'
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka/
+

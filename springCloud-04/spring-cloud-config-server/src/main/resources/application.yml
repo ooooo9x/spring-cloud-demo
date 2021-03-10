@@ -1,0 +1,45 @@
+server:
+  port: 9005
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      label: master
+      server:
+        git:
+          #github配置地址
+          uri: https://github.com/ty1972873004/spring-cloud-config.git
+          #配置文件路径
+          search-paths: appconfig
+          #username:
+          #password:
+          #git分支
+          default-label: master
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+  # 消息队列
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+
+# 度量指标监控与健康检查
+management:
+  endpoints:
+    web:
+      base-path: /actuator    # 访问端点根路径，默认为 /actuator
+      exposure:
+        include: bus-refresh  # 需要开启的端点
+
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n'
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka/
